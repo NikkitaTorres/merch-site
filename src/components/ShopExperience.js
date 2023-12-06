@@ -32,6 +32,26 @@ class ShopExperience extends React.Component {
     }
   };
 
+  handleAddToCart = () => {
+    const {selectedItem, mainItemList} = this.state;
+
+    if (selectedItem) {
+      const existingItemIndex = mainItemList.findIndex(
+        item => item.name === selectedItem.name || item.id === selectedItem.id
+      );
+
+      if (existingItemIndex !== -1) {
+        const updatedItemList = [...mainItemList];
+        updatedItemList[existingItemIndex].quantity -=1;
+        this.setState({ mainItemList: updatedItemList });
+      } else {
+        console.log("Item out of stock")
+      }
+    } else {
+      this.handleStockAdjustment();
+    }
+  };
+
   render() {
     // let buyButton=null;
     // if (this.state.quantity <= 0) {
@@ -45,7 +65,7 @@ class ShopExperience extends React.Component {
       <React.Fragment>
         <Store store={(this.state.mainItemList)}/>
         <StockAdjustment onNewItemCreation={this.handleStockAdjustment} />
-        {/* <button onClick={this.handleClick}>Buy</button> */}
+        <button onClick={this.handleAddToCart}>Add to Cart</button>
       </React.Fragment>
 
     );
