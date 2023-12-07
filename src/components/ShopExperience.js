@@ -13,16 +13,21 @@ class ShopExperience extends React.Component {
       mainItemList: [],
       cartItems: [],
       isOutOfStock: false,
+      // storeItems: [],
     };
   }
 
-  createStorage() {
+  componentDidMount() {
+    const storedStoreItems = JSON.parse(localStorage.getItem('mainItemList')) || [];
     const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    this.setState({ cartItems: storedCartItems });
+    this.setState({ mainItemList: storedStoreItems, cartItems: storedCartItems});
+    console.log("storage is created");
   }
 
-  updateStorage() {
+  componentDidUpdate() {
+    localStorage.setItem('mainItemList', JSON.stringify(this.state.mainItemList));
     localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
+    console.log("storage did update");
   }
 
   handleChangingItem = (id) => {
@@ -68,10 +73,10 @@ class ShopExperience extends React.Component {
           if (existingCartItemIndex !== -1) {
             const updatedCart = [...cartItems];
             updatedCart[existingCartItemIndex].quantity += 1;
-            this.setState({ mainItemList: updatedItemList, cartItems: updatedCart });
+            this.setState({ mainItemList: updatedItemList, cartItems: updatedCart, isOutOfStock: false });
           } else {
             const updatedCart = [...cartItems, { ...selectedItem, quantity: 1 }];
-            this.setState({ mainItemList: updatedItemList, cartItems: updatedCart });
+            this.setState({ mainItemList: updatedItemList, cartItems: updatedCart, isOutOfStock: false });
           }
         } else {
           this.setState({ isOutOfStock: true })
