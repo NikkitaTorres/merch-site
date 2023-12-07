@@ -5,18 +5,22 @@ import Item from "./Item";
 function Store(props) {
   return(
     <React.Fragment>
-      {props.store?.map((item, index) => //? placeholder 
-      <Item name={item.name}
+      {props.store?.map((item) => 
+      <Item 
+      whenItemClicked = { props.onItemSelection }
+      name={item.name}
       description={item.description}
       quantity={item.quantity}
-      key={index} />
+      id={item.id}
+      key={item.id} />
       )}
     </React.Fragment>
   );
 }
 
 Store.propTypes = {
-  store: PropTypes.array
+  store: PropTypes.array,
+  onItemSelection: PropTypes.func
 };
 
 export default Store;

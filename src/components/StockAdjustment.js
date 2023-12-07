@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 function StockAdjustment(props) {
   function handleStockChangeSubmission(event) {
     event.preventDefault();
-    console.log(event.target.name.value);
-    console.log(event.target.description.value);
-    console.log(event.target.quantity.value);
+    // console.log(event.target.name.value);
+    // console.log(event.target.description.value);
+    // console.log(event.target.quantity.value);
     props.onNewItemCreation({
       name: event.target.name.value,
       description: event.target.description.value,
