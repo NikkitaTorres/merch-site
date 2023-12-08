@@ -13,7 +13,6 @@ class ShopExperience extends React.Component {
       mainItemList: [],
       cartItems: [],
       isOutOfStock: false,
-      // storeItems: [],
     };
   }
 
@@ -31,8 +30,9 @@ class ShopExperience extends React.Component {
   }
 
   handleChangingItem = (id) => {
-    const selectedItem = this.state.mainItemList.filter(item => item.id === id) [0]
-    this.setState({selectedItem: selectedItem});
+    const selectedItem = this.state.mainItemList.find(item => item.id === id)
+    console.log('Selected item:', selectedItem);
+    this.setState({selectedItem: selectedItem });
   }
 
   handleStockAdjustment = (newItem) => {
@@ -87,17 +87,31 @@ class ShopExperience extends React.Component {
     }
   };//, isOutOfStock: false
 
+  handleDeletingItem = (id) => {
+    const updatedCart = this.state.cartItems.filter(item => item.id !== id);
+    this.setState({
+      cartItems: updatedCart,
+      selectedItem : null
+    })
+  }
+
   render() {
-    const {isOutOfStock} = this.state;
+
+    const buttonStyle = {
+      backgroundColor: 'chocolate',
+      color: 'lemonchiffon',
+      fontFamily: 'copperplate',
+      margin: '0 auto',
+      display: 'block',
+    };
 
     return (
       <React.Fragment>
         <Store store={this.state.mainItemList} onItemSelection={this.handleChangingItem}/>
-        <ItemDetail item= {this.state.selectedItem} />
+        <ItemDetail item= {this.state.selectedItem} onClickingDelete = {this.handleDeletingItem} />
         <StockAdjustment onNewItemCreation={this.handleStockAdjustment} />
-        <button onClick={this.handleAddToCart}>Add to Cart</button>
-        {isOutOfStock && <p>Item out of stock</p>}
-        <Cart cartItems={this.state.cartItems} />
+        <button onClick={this.handleAddToCart} style={buttonStyle}>Add to Cart</button>
+        <Cart cartItems={this.state.cartItems} onClickingDelete={this.handleDeletingItem}/>
       </React.Fragment>
 
     );
