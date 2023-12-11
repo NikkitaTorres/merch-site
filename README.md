@@ -1,4 +1,18 @@
-# Co-authored-by: Brianca Knight <briancaknight@gmail.com> and Nikkita Torres <nikkitatorres@yahoo.com>
+# merch-site
+
+#### Co-authored-by: Brianca Knight <briancaknight@gmail.com> and Nikkita Torres <nikkitatorres@yahoo.com>
+
+## Technologies Used
+
+* HTML
+* CSS
+* JavaScript
+* JSX
+* React.js
+
+## Description
+
+This a project designed to create, update and delete stock on a merch site for the band, AC/DC.
 
 # Getting Started with Create React App
 
