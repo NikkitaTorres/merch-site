@@ -11,7 +11,6 @@ function Store(props) {
   return(
     <React.Fragment>
       {props.store?.map((item) => 
-      // <div key={item.id} onClick={() => props.onItemSelection(item.id)}>
       <Item 
       style={styles}
       whenItemClicked = { props.onItemSelection }
@@ -20,7 +19,6 @@ function Store(props) {
       quantity={item.quantity}
       id={item.id}
       key={item.id} />
-      // </div>
       )}
     </React.Fragment>
   );

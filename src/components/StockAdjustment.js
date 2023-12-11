@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { v4 } from 'uuid';
 import PropTypes from "prop-types";
-import Item from "./Item";
 
 function StockAdjustment(props) {
 const [items, setItems] = useState([]);
@@ -37,17 +36,6 @@ const [items, setItems] = useState([]);
           min='0' />
         <button type="submit" style={{ backgroundColor: 'chocolate', color: 'lemonchiffon', fontFamily: 'copperplate' }}>Update Stock</button>
       </form>
-{/* 
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {items.map((item, index) => (
-          <Item
-            key={index}
-            name={item.name}
-            description={item.description}
-            quantity={item.quantity}
-            id={item.id} />
-        ))}
-      </div> */}
     </React.Fragment>
   );
 }

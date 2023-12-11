@@ -20,9 +20,9 @@ function ItemDetail(props) {
   return (
     <React.Fragment>
       <div style={props.style ? {...styles, ...props.style} : styles}>
-      <h2> Item Detail </h2>
-      <h3>{item.name}</h3>
-      <h3>{item.description}</h3>
+        <h2> Item Detail </h2>
+        <h3>{item.name}</h3>
+       <h3>{item.description}</h3>
       </div>
     </React.Fragment>
   );
