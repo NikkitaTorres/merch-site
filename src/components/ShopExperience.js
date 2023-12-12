@@ -3,17 +3,15 @@ import Store from './Store.js';
 import StockAdjustment from './StockAdjustment.js';
 import ItemDetail from './ItemDetail.js';
 import Cart from './Cart.js';
+import { connect } from 'react-redux';
+import { addToCart } from '../actions/cartActions.js';
+import { updateStock } from '../actions/stockActions.js';
 
 class ShopExperience extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selectedItem: null,
-      mainItemList: [],
-      cartItems: [],
-      isOutOfStock: false,
-    };
+    const { selectedItem, mainItemList, isOutOfStock } = this.props
   }
 
   componentDidMount() {
@@ -118,4 +116,9 @@ class ShopExperience extends React.Component {
   }
 }
 
-export default ShopExperience;
+const mapDispatchToProps = (dispatch) => ({
+  handleAddToCart: (selectedItem) => dispatch(addToCart(selectedItem)),
+  handleStockAdjustment: (newItem) => dispatch(updateStock(newItem)),
+});
+
+export default connect(null, mapDispatchToProps)(ShopExperience);

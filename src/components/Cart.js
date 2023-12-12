@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { removeFromCart } from '../actions/cartActions';
 
 class Cart extends React.Component {
 
@@ -34,4 +36,12 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart;
+const mapStateToProps = (state) => ({
+  cartItems: state.cart,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClickingDelete: (itemId) => dispatch(removeFromCart(itemId),)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
